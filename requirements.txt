@@ -1,0 +1,13 @@
+# Core
+numpy>=2.0
+scipy>=1.14
+pandas>=2.2
+matplotlib>=3.9
+scikit-learn>=1.5
+joblib>=1.4
+ucimlrepo
+# Week 1
+duckdb>=1.0
+mapie>=1.0
+jupyterlab>=4.0
+
