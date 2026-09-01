@@ -2,3 +2,4 @@
 .venv
 A_data_driven_approach_to_prediction
 pyproject
+uv.lock

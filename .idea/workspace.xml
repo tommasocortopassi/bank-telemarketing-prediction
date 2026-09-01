@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb6259e4-aba7-443a-a0af-ed628211bf7b" name="Changes" comment="Add more EDA. Built models">
+    <list default="true" id="cb6259e4-aba7-443a-a0af-ed628211bf7b" name="Changes" comment="Add time dependent EDA.">
+      <change beforePath="$PROJECT_DIR$/.gitignore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Project_1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project_1.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,18 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tommasocortopassi"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tommasocortopassi&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tommasocortopassi/bank-telemarketing-replication",
-    "accountId": "959c4e26-ea1b-4046-9aea-5c212864f668"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tommasocortopassi/bank-telemarketing-replication&quot;,
+    &quot;accountId&quot;: &quot;959c4e26-ea1b-4046-9aea-5c212864f668&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -93,7 +94,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787569923819</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add time dependent EDA.">
+      <option name="closed" value="true" />
+      <created>1788173254846</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1788173254846</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,6 +122,7 @@
     </ignored-roots>
     <MESSAGE value="Init commit" />
     <MESSAGE value="Add initial exploratory data analysis (EDA)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add initial exploratory data analysis (EDA)." />
+    <MESSAGE value="Add time dependent EDA." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add time dependent EDA." />
   </component>
 </project>
