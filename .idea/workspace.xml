@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb6259e4-aba7-443a-a0af-ed628211bf7b" name="Changes" comment="Add models (temporal splits) and draft final sections">
+    <list default="true" id="cb6259e4-aba7-443a-a0af-ed628211bf7b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A_data_driven_approach_to_prediction.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/A_data_driven_approach_to_prediction.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bank_Marketing_Project.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Bank_Marketing_Project.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788297780990</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Finish add models, compare results under  different assumptions">
+      <option name="closed" value="true" />
+      <created>1788383112381</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1788383112381</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,6 +157,7 @@
     <MESSAGE value="Add time dependent EDA." />
     <MESSAGE value="Add more time dependent EDA and comments" />
     <MESSAGE value="Add models (temporal splits) and draft final sections" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add models (temporal splits) and draft final sections" />
+    <MESSAGE value="Finish add models, compare results under  different assumptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish add models, compare results under  different assumptions" />
   </component>
 </project>
