@@ -1,21 +1,20 @@
 # Bank telemarketing under temporal validation
 
-In this repo we train ML models to predict the outcome of telemarketing calls by a Portuguese bank, selling 
-subscriptions to long-term deposits. The dataset we use is `bank-additional-full.csv`, a popular dataset in ML projects/repos.
+In this repo we train ML models to predict the outcome of telemarketing calls by a Portuguese
+bank, selling subscriptions to long-term deposits. The dataset is `bank-additional-full.csv`
+(UCI, 41.188 contacts, May 2008 – November 2010), a popular one in ML tutorials and portfolio
+projects.
 
-
-
-`bank-additional-full.csv` (UCI, 41.188 contacts of a Portuguese bank, May 2008 – November
-2010) is ordered in time, and its statistics move: the subscription rate goes from 3% over the
-first months to 45% over the last ones. Published results on this dataset come from shuffled
-cross-validation. **This notebook asks what is left of them when the folds are drawn in time
-order instead.**
+Almost all of those projects validate on a **random** split. But the file is ordered in time,
+and its statistics move underneath the model: the subscription rate goes from 3% over the first
+months to 45% over the last ones. **This repo asks what is left of the usual results when the
+folds are drawn in time order instead.**
 
 ![Subscription rate over the campaign](success_rate.png)
 
 ## Headline
 
-Same rows, same model, same features, `duration` excluded: only the fold generator changes:
+Same rows, same model, same features, `duration` excluded: only the fold generator changes.
 
 | logistic regression, client features | ROC-AUC |
 |---|---|
@@ -26,9 +25,10 @@ The split is worth **+0.125 ROC-AUC**. Nothing about the model changed.
 
 ## The specific question
 
-The source paper adds five macro socio-economic indicators (`emp.var.rate`, `cons.price.idx`,
-`cons.conf.idx`, `euribor3m`, `nr.employed`) to the usual client attributes and reports
-`euribor3m` as the most influential input of its best model. Do they help here?
+`bank-additional-names.txt`, shipped with the data, claims that the five macro socio-economic
+features (`emp.var.rate`, `cons.price.idx`, `cons.conf.idx`, `euribor3m`, `nr.employed`) "lead
+to substantial improvement in the prediction of a success, even when the duration of the call
+is not included". Does that hold under temporal validation?
 
 | adding the 5 macro features is worth (ROC-AUC) | random folds | temporal folds |
 |---|---|---|
@@ -36,8 +36,9 @@ The source paper adds five macro socio-economic indicators (`emp.var.rate`, `con
 | forest | +0.0122 | −0.0185 |
 | boosting | +0.0102 | +0.0055 |
 
-With random folds all six comparisons (three models × `duration` in/out) are positive,
-+0.003 to +0.012, the direction the paper reports, but very minimal. With temporal folds and on the test set the difference is +0.0014, smaller than the gap between two models.
+With random folds all six comparisons (three models × `duration` in/out) come out positive,
+but small: +0.003 to +0.012. With temporal folds four of the six turn negative. On the held-out
+test set the difference is +0.0014, smaller than the gap between two model families.
 
 **Why.** The macro features are functions of calendar time, and calendar time is the row index.
 Under a shuffled split the fold that predicts a row was also trained on its neighbours, so
@@ -81,15 +82,23 @@ This file is a public subset: 41.188 of their 52.944 contacts, ending November 2
 June 2013, and containing only a handful of the 22 features their selection procedure kept.
 Everything about the interest rate offered, the agent, the call context and the bank's internal
 client profiling is absent. Their reported ALIFT is also a different quantity from the
-`AP/baseline` column here — see §5 of the notebook.
+`AP/baseline` column used here — see §5 of the notebook.
 
 ## Running it
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn jupyter
+pip install -r requirements.txt
 jupyter notebook Bank_Marketing_Project.ipynb
 ```
 
-`bank-additional-full.csv` must sit next to the notebook
-([UCI](https://archive.ics.uci.edu/dataset/222/bank+marketing), `bank-additional.zip`). Runs top
-to bottom; §4.2 and §4.3 are the slow cells.
+The dataset is included in the repo, so the notebook runs top to bottom as is. §4.2 and §4.3
+are the slow cells (a few minutes each).
+
+## Data and licence
+
+The code in this repo is MIT (see `LICENSE`). The dataset is **not** mine: it is the UCI Bank
+Marketing dataset, created by S. Moro, P. Cortez and P. Rita, distributed by the
+[UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/222/bank+marketing) under
+a **Creative Commons Attribution 4.0 International (CC BY 4.0)** licence, and redistributed
+here under those terms. If you use it, cite the paper above, as `bank-additional-names.txt`
+asks.

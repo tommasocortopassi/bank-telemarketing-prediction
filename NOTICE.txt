@@ -1,0 +1,17 @@
+This repository contains two kinds of material under two different licences.
+
+CODE
+    Bank_Marketing_Project.ipynb, and everything else authored here.
+    MIT License, (c) 2026 Tommaso Cortopassi. See LICENSE.
+
+DATA
+    bank-additional-full.csv, bank-additional-names.txt
+    UCI Bank Marketing dataset, created by S. Moro, P. Cortez and P. Rita.
+    Licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/),
+    redistributed here under those terms, unmodified.
+    https://archive.ics.uci.edu/dataset/222/bank+marketing
+
+    Citation requested by the dataset authors:
+    S. Moro, P. Cortez, P. Rita. A Data-Driven Approach to Predict the Success
+    of Bank Telemarketing. Decision Support Systems 62 (2014) 22-31.
+    doi:10.1016/j.dss.2014.03.001
