@@ -1,5 +1,10 @@
 # Bank telemarketing under temporal validation
 
+In this repo we train ML models to predict the outcome of telemarketing calls by a Portuguese bank, selling 
+subscriptions to long-term deposits. The dataset we use is `bank-additional-full.csv`, a popular dataset in ML projects/repos.
+
+
+
 `bank-additional-full.csv` (UCI, 41.188 contacts of a Portuguese bank, May 2008 – November
 2010) is ordered in time, and its statistics move: the subscription rate goes from 3% over the
 first months to 45% over the last ones. Published results on this dataset come from shuffled
