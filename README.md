@@ -63,8 +63,7 @@ AP/baseline from 1.29 to 1.60.
 
 **On the test set** (8238 contacts, base rate 30.8%) the delivered logistic regression reaches
 ROC-AUC 0.765 and lift 2.33 in the top decile: calling the best-scored 10% of clients finds 2.3
-times as many subscribers as calling 10% at random. Adding `duration` would give 0.843, +0.079
-— and is the reason published numbers on this dataset look as good as they do. It is the length
+times as many subscribers as calling 10% at random. Adding `duration` would give 0.843, +0.079. It is the length
 of the call, so it does not exist when the decision to call is taken, and it is reported as a
 benchmark only.
 
@@ -82,7 +81,7 @@ This file is a public subset: 41.188 of their 52.944 contacts, ending November 2
 June 2013, and containing only a handful of the 22 features their selection procedure kept.
 Everything about the interest rate offered, the agent, the call context and the bank's internal
 client profiling is absent. Their reported ALIFT is also a different quantity from the
-`AP/baseline` column used here — see §5 of the notebook.
+`AP/baseline` column used here, see §5 of the notebook.
 
 ## Running it
 
