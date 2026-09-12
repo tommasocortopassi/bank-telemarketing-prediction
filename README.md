@@ -14,14 +14,13 @@ folds are drawn in time order instead.**
 
 ## Headline
 
-Same rows, same model, same features, `duration` excluded: only the fold generator changes.
-
-| logistic regression, client features | ROC-AUC |
+| logistic regression, client features, `duration` excluded | ROC-AUC |
 |---|---|
 | random 10-fold (§4.3) | **0.6682** |
 | temporal 10-fold (§4.1) | **0.5433** |
 
-The split is worth **+0.125 ROC-AUC**. Nothing about the model changed.
+Same data, same model, same features: the usual random 10-fold reports **0.125 ROC-AUC** more
+than a temporal one on the same file.
 
 ## The specific question
 
@@ -81,8 +80,7 @@ benchmark only.
 This file is a public subset: 41.188 of their 52.944 contacts, ending November 2010 instead of
 June 2013, and containing only a handful of the 22 features their selection procedure kept.
 Everything about the interest rate offered, the agent, the call context and the bank's internal
-client profiling is absent. Their reported ALIFT is also a different quantity from the
-`AP/baseline` column used here — see §5 of the notebook.
+client profiling is absent.
 
 ## Running it
 
