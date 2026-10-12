@@ -62,8 +62,7 @@ AP/baseline from 1.29 to 1.60.
 
 **On the test set** (8238 contacts, base rate 30.8%) the delivered logistic regression reaches
 ROC-AUC 0.765 and lift 2.33 in the top decile: calling the best-scored 10% of clients finds 2.3
-times as many subscribers as calling 10% at random. Adding `duration` would give 0.843, +0.079
-— and is the reason published numbers on this dataset look as good as they do. It is the length
+times as many subscribers as calling 10% at random. Adding `duration` would give 0.843, +0.079, and is the reason published numbers on this dataset look as good as they do. It is the length
 of the call, so it does not exist when the decision to call is taken, and it is reported as a
 benchmark only.
 
