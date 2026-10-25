@@ -2,12 +2,12 @@
 
 In this repo we train ML models to predict the outcome of telemarketing calls by a Portuguese
 bank, selling subscriptions to long-term deposits. The dataset is `bank-additional-full.csv`
-(UCI, 41.188 contacts, May 2008 – November 2010), a popular one in ML tutorials and portfolio
+(UCI, 41,188 contacts, May 2008 – November 2010), a popular one in ML tutorials and portfolio
 projects.
 
 Almost all of those projects validate on a **random** split. But the file is ordered in time,
-and its statistics move underneath the model: the subscription rate goes from 3% over the first
-months to 45% over the last ones. **This repo asks what is left of the usual results when the
+and its statistics move underneath the model: the subscription rate goes from 3.5% over the first
+months to 44.5% from June 2009 onwards. **This repo asks what is left of the usual results when the
 folds are drawn in time order instead.**
 
 ![Subscription rate over the campaign](success_rate.png)
@@ -19,8 +19,9 @@ folds are drawn in time order instead.**
 | random 10-fold (§4.3) | **0.6682** |
 | temporal 10-fold (§4.1) | **0.5433** |
 
-Same data, same model, same features: the usual random 10-fold reports **0.125 ROC-AUC** more
-than a temporal one on the same file.
+Same model, same features, same first 80% of the file: only the way the folds are drawn changes.
+The scored rows are not exactly identical (the temporal folds never score the first 3,000, so the
+base rate is 0.068 against 0.064), but the random folds report **0.125 ROC-AUC** more.
 
 ## The specific question
 
@@ -39,11 +40,11 @@ With random folds all six comparisons (three models × `duration` in/out) come o
 but small: +0.003 to +0.012. With temporal folds four of the six turn negative. On the held-out
 test set the difference is +0.0014, smaller than the gap between two model families.
 
-**Why.** The macro features are functions of calendar time, and calendar time is the row index.
-Under a shuffled split the fold that predicts a row was also trained on its neighbours, so
-these columns hand the model the local base rate. Under a temporal split the model has to
-extrapolate that clock past the end of its training data, and the fitted coefficients no longer
-apply.
+**Why.** A plausible explanation is that the macro features are functions of calendar time, so
+they act as a proxy for *when* a call was made, and hence for the local subscription rate. Under
+a shuffled split the model is trained on each row's neighbours and can interpolate that rate.
+Under a temporal split it has to extrapolate that clock past the end of its training data, where
+the fitted coefficients need not apply.
 
 ## Results
 
@@ -57,17 +58,19 @@ apply.
 *(ROC-AUC, logistic regression, `duration` excluded throughout.)*
 
 **Retraining is the only change that improved a deployable model.** Refitting every 50 contacts
-on the previous 5000 rows gives +0.0366 ROC-AUC over a single fit on the same rows, and moves
-AP/baseline from 1.29 to 1.60.
+on the previous 5,000 rows gives +0.0366 ROC-AUC over a single fit per fold (§4.1), and moves
+AP/baseline from 1.29 to 1.60. The two are scored on nearly the same rows: the rolling window
+cannot score the first 5,000 rows of the file, the temporal folds skip the first 3,000.
 
-**On the test set** (8238 contacts, base rate 30.8%) the delivered logistic regression reaches
+**On the test set** (8,238 contacts, base rate 30.8%) the delivered logistic regression reaches
 ROC-AUC 0.765 and lift 2.33 in the top decile: calling the best-scored 10% of clients finds 2.3
-times as many subscribers as calling 10% at random. Adding `duration` would give 0.843, +0.079, and is the reason published numbers on this dataset look as good as they do. It is the length
-of the call, so it does not exist when the decision to call is taken, and it is reported as a
-benchmark only.
+times as many subscribers as calling 10% at random. Including `duration` raises test ROC-AUC
+from 0.765 to 0.843 in this experiment. Since the duration of a call is unavailable before the
+call, this result is reported only as a retrospective benchmark.
 
-> The four protocols score different rows and are **not** comparable with each other. The test
-> set is the late, high-success regime; §4.1–4.3 are the early one. A single number for "the
+> §4.4 is **not** comparable with the other three protocols: the test set is the late,
+> high-success regime, §4.1–4.3 score the early one. And §4.1–4.3 do not score exactly the same
+> rows either, so their differences are indicative, not exact. A single number for "the
 > performance of the model" does not exist on this dataset.
 
 ## Not a replication
@@ -76,7 +79,7 @@ benchmark only.
 > telemarketing*, Decision Support Systems **62** (2014) 22–31,
 > [doi:10.1016/j.dss.2014.03.001](https://doi.org/10.1016/j.dss.2014.03.001)
 
-This file is a public subset: 41.188 of their 52.944 contacts, ending November 2010 instead of
+This file is a public subset: 41,188 of their 52,944 contacts, ending November 2010 instead of
 June 2013, and containing only a handful of the 22 features their selection procedure kept.
 Everything about the interest rate offered, the agent, the call context and the bank's internal
 client profiling is absent.

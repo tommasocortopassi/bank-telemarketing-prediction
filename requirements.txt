@@ -1,6 +1,9 @@
+# Last run with Python 3.14, numpy 2.5.3, pandas 3.0.5, matplotlib 3.11.2, seaborn 0.13.2,
+# scikit-learn 1.9.1. The notebook needs Python >= 3.9 (dict union) and
+# scikit-learn >= 1.4 (HistGradientBoostingClassifier(categorical_features="from_dtype")).
 numpy
 pandas
 matplotlib
 seaborn
-scikit-learn
+scikit-learn>=1.4
 jupyter
