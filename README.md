@@ -14,14 +14,18 @@ folds are drawn in time order instead.**
 
 ## Headline
 
-| logistic regression, client features, `duration` excluded | ROC-AUC |
-|---|---|
-| random 10-fold (§4.3) | **0.6682** |
-| temporal 10-fold (§4.1) | **0.5433** |
+| logistic regression, client and campaign features, `duration` excluded | ROC-AUC |
+|------------------------------------------------------------------------|---|
+| random 10-fold (§4.3)                                                  | **0.6682** |
+| temporal 10-fold (§4.1)                                                | **0.5433** |
 
 Same model, same features, same first 80% of the file: only the way the folds are drawn changes.
 The scored rows are not exactly identical (the temporal folds never score the first 3,000, so the
-base rate is 0.068 against 0.064), but the random folds report **0.125 ROC-AUC** more.
+base rate is 0.068 against 0.064), but the random folds report **0.125 ROC-AUC** more.  Part of this gap 
+is not leakage from the future: a shuffled fold mixes contacts from every period,
+from 3.5% to 44.5% success, so its ROC-AUC also rewards a model that recognises *when* a call was
+made, while each temporal fold covers a single period. The features make that easy: `month` and
+`contact` change with the calendar.
 
 ## The specific question
 
@@ -36,9 +40,8 @@ is not included". Does that hold under temporal validation?
 | forest | +0.0122 | −0.0185 |
 | boosting | +0.0102 | +0.0055 |
 
-With random folds all six comparisons (three models × `duration` in/out) come out positive,
-but small: +0.003 to +0.012. With temporal folds four of the six turn negative. On the held-out
-test set the difference is +0.0014, smaller than the gap between two model families.
+All comparisons give differences smaller than
+the spread between folds (standard deviation ≈ 0.10 in §4.1), so they're not meaningful.
 
 **Why.** A plausible explanation is that the macro features are functions of calendar time, so
 they act as a proxy for *when* a call was made, and hence for the local subscription rate. Under
@@ -66,7 +69,7 @@ cannot score the first 5,000 rows of the file, the temporal folds skip the first
 ROC-AUC 0.765 and lift 2.33 in the top decile: calling the best-scored 10% of clients finds 2.3
 times as many subscribers as calling 10% at random. Including `duration` raises test ROC-AUC
 from 0.765 to 0.843 in this experiment. Since the duration of a call is unavailable before the
-call, this result is reported only as a retrospective benchmark.
+call, this result is reported only as a benchmark.
 
 > §4.4 is **not** comparable with the other three protocols: the test set is the late,
 > high-success regime, §4.1–4.3 score the early one. And §4.1–4.3 do not score exactly the same
